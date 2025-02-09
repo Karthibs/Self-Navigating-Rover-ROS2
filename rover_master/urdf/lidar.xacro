@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:property name="lidar_radius" value="0.03"/>
+    <xacro:property name="lidar_length" value="0.05"/>
+
+    <link name="base_scan">
+        <visual>
+            <geometry>
+                <cylinder radius="${lidar_radius}" length="${lidar_length}"/>
+            </geometry>
+            <material name="orange"/>
+        </visual>
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <collision>
+            <geometry>
+                <cylinder radius="${lidar_radius}" length="${lidar_length}"/>
+            </geometry>
+        </collision>
+        <xacro:cylinder_inertia m="0.3" r="${2 * lidar_radius}" h="${2*lidar_length}" 
+                                    xyz="0 0 0" rpy="0 0 0" />
+    </link>
+
+    <joint name="base_lidar" type="fixed">
+        <parent link="base_link"/>
+        <child link="base_scan"/>
+        <origin xyz="${0.8*body_length/2} 0.0 ${body_height + lidar_length/2}" rpy="0.0 0.0 0.0"/>
+    </joint>
+    
+    <gazebo reference="base_scan">
+        <material>
+            Gazebo/Orange
+        </material>
+        <sensor name="laser" type="ray">
+            <pose> 0 0 0 0 0 0 </pose>
+            <visualize>true</visualize>
+            <update_rate>10</update_rate>
+            <ray>
+                <scan>
+                    <horizontal>
+                        <samples>360</samples>
+                        <min_angle>-3.14</min_angle>
+                        <max_angle>3.14</max_angle>
+                    </horizontal>
+                </scan>
+                <range>
+                    <min>0.3</min>
+                    <max>12</max>
+                </range>
+            </ray>
+            <plugin name="laser_controller" filename="libgazebo_ros_ray_sensor.so">
+                <ros>
+                    <argument>~/out:=scan</argument>
+                </ros>
+                <output_type>sensor_msgs/LaserScan</output_type>
+                <frame_name>base_scan</frame_name>
+            </plugin>
+        </sensor>
+    </gazebo>
+    
+    
+
+    
+</robot>
