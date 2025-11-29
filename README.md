@@ -16,40 +16,15 @@ This project implements a **self-navigating rover** using the ROS2 ecosystem. It
 
 The system is designed to run both on a **real rover** and simulation environments such as RViz or Gazebo.
 
----
-
-## Repository Structure
-
-```
-Self-Navigating-Rover-ROS2/
-│
-├── imu_sub/                 # IMU subscription node (sensor interface)
-│
-├── rover_animal/
-│   └── urdf/                # URDF model of the rover (robot description)
-│
-├── rover_master/            # Main rover control logic and ROS2 package
-│
-├── custom_map.pgm           # Occupancy grid maps
-├── custom_map.yaml
-├── field1.pgm
-├── field1_2.pgm
-├── field1_2.yaml
-├── my_map.pgm
-├── my_map.yaml
-│
-├── nav2_test.py             # Python script to test Navigation2 behaviours
-│
-└── build/                   # Auto-generated build files (colcon)
-```
-
----
 
 ## Key Features
 
 ### 1. Robot Description (URDF)
+<p align="center">
+  <img src="images/rover.png" width="300">
+</p>
 - Defines the rover’s physical structure
-- Includes links, joints, sensors
+- Includes IMU, Camera, Lidar.
 - Viewable in RViz2
 - Easily extendable for LiDAR, cameras, or GPS
 
@@ -59,6 +34,10 @@ Self-Navigating-Rover-ROS2/
 - Supports future sensor fusion
 
 ### 3. Map-Based Navigation
+<p align="center">
+  <img src="images/rviz.png" width="420">
+  <img src="images/gazebotop.png" width="300">
+</p>
 Includes multiple `.pgm + .yaml` maps for testing:
 - Indoor maps
 - Field-like outdoor maps
@@ -78,77 +57,10 @@ Compatible with:
 ---
 
 ## Technologies Used
-- **ROS2** (Foxy/Humble compatible)
+- **ROS2** (Humble compatible)
 - **Python 3**
 - **C++**
 - **URDF / XML**
 - **Navigation2 Stack**
 - **RViz2**
 
----
-
-## How to Run
-
-### 1. Clone the repository
-```bash
-git clone https://github.com/Karthibs/Self-Navigating-Rover-ROS2.git
-cd Self-Navigating-Rover-ROS2
-```
-
-### 2. Source ROS2
-```bash
-source /opt/ros/humble/setup.bash
-```
-
-### 3. Build
-```bash
-colcon build
-source install/setup.bash
-```
-
-### 4. Run IMU node
-```bash
-ros2 run imu_sub imu_subscriber
-```
-
-### 5. Launch Nav2 test
-```bash
-python3 nav2_test.py
-```
-
----
-
-## Robot Model (URDF)
-The URDF located in `rover_animal/urdf/` defines:
-- Rover chassis
-- Wheel configuration
-- IMU link
-- Base transforms
-
-This enables simulation, visualization, and integration with Nav2.
-
----
-
-## Future Extensions
-- LiDAR integration
-- EKF sensor fusion
-- SLAM (GMapping / Slam Toolbox)
-- GPS / outdoor navigation
-- Advanced motion planners
-
----
-
-## Author
-**B S Karthikeya Reddy**
-
----
-
-## Purpose
-This project demonstrates experience in:
-- ROS2 architecture
-- Autonomous navigation
-- Sensor integration
-- Robot modeling
-- Real-world robotics development
-
-It is part of my robotics portfolio for academic and industry applications.
