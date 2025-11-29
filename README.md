@@ -4,7 +4,7 @@ An autonomous ground-rover project built using **ROS2**, capable of **self-navig
 
 ---
 
-## Project Overview
+## Overview
 
 This project implements a **self-navigating rover** using the ROS2 ecosystem. It integrates:
 
@@ -14,8 +14,6 @@ This project implements a **self-navigating rover** using the ROS2 ecosystem. It
 - **Map loading and waypoint navigation**
 - **Custom rover control package**
 
-The system is designed to run both on a **real rover** and simulation environments such as RViz or Gazebo.
-
 
 ## Key Features
 
@@ -23,6 +21,7 @@ The system is designed to run both on a **real rover** and simulation environmen
 <p align="center">
   <img src="images/rover.png" width="300">
 </p>
+
 - Defines the rover’s physical structure
 - Includes IMU, Camera, Lidar.
 - Viewable in RViz2
@@ -38,14 +37,9 @@ The system is designed to run both on a **real rover** and simulation environmen
   <img src="images/rviz.png" width="420">
   <img src="images/gazebotop.png" width="300">
 </p>
-Includes multiple `.pgm + .yaml` maps for testing:
-- Indoor maps
-- Field-like outdoor maps
 
-Compatible with:
-- `map_server`
-- `nav2_amcl`
-- Global & local planners
+- Used `rviz` to view the map and postion of the rover on the field 
+- Gazebo is used a pyhiscal simualtor to test the simulation
 
 ### 4. Nav2 Test Script
 `nav2_test.py` demonstrates:
@@ -57,10 +51,9 @@ Compatible with:
 ---
 
 ## Technologies Used
-- **ROS2** (Humble compatible)
+- **ROS2** (Humble)
 - **Python 3**
 - **C++**
 - **URDF / XML**
 - **Navigation2 Stack**
 - **RViz2**
-
